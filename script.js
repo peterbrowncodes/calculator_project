@@ -1,31 +1,19 @@
+let firstNumber;
+let secondNumber;
+let operator;
+
 function addition(a, b) {
-  const first = a;
-  const second = b;
-  const operator = "+";
-  const total = a + b;
-  return total;
+  return a + b;
 }
 
 function subtract(a, b) {
-  const first = a;
-  const second = b;
-  const operator = "-";
-  const total = a - b;
-  return total;
+  return a - b;
 }
 
 function multiply(a, b) {
-  const first = a;
-  const second = b;
-  const operator = "*";
-  const total = a * b;
-  return total;
+  return a * b;
 }
 
 function divide(a, b) {
-  const first = a;
-  const second = b;
-  const operator = "/";
-  const total = a / b;
-  return total;
+  return a / b;
 }
