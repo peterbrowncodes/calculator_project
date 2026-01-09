@@ -56,18 +56,13 @@ function joinNum(array) {
 }
 
 calcBody.addEventListener('click', function(event) {
-
   elementText = event.target.textContent;
   elementClass = event.target.className;
   elementId = event.target.id;
 
   // check if class of click is number or operator
   if (elementClass === "number") {
-  // if number
-    // check if first number is null
-      // assign text content to 1st var
-    // if not null 
-      // assign text content to 2nd var
+  // if number or operator
     if (operator === null) {
       selectedNum = Number(elementText);
       concatNum(selectedNum, firstNumberArray);
@@ -83,12 +78,12 @@ calcBody.addEventListener('click', function(event) {
       console.log("second number: " + secondNumber);
     }
   } else if (elementClass === "operator") {
-  // if operator
-    // assign value to operator var
     firstNumber = Number(firstNumber);
     operator = elementText;
     console.log("operator: " + operator);
   };
+
+  calcResult.textContent = `${firstNumber} ${operator} ${secondNumber}`
 
   // clear valriables 
   if (elementId === "clear") {
@@ -100,7 +95,6 @@ calcBody.addEventListener('click', function(event) {
     calcResult.textContent = 0;
     console.log("cleared vars: " + firstNumber + secondNumber + operator);
   }
-  // start operation
 
   // results output
   if (elementId === "equals") {
