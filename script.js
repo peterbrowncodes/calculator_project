@@ -69,6 +69,7 @@ calcBody.addEventListener('click', function(event) {
       firstNumber = joinNum(firstNumberArray);
       console.log("first number array: " + firstNumberArray);
       console.log("first number: " + firstNumber);
+      calcResult.textContent = `${firstNumber}`;
     } 
     else {
       selectedNum = Number(elementText);
@@ -76,14 +77,15 @@ calcBody.addEventListener('click', function(event) {
       secondNumber = joinNum(secondNumberArray);
       console.log("second number array: " + secondNumberArray);
       console.log("second number: " + secondNumber);
+      calcResult.textContent = `${firstNumber} ${operator} ${secondNumber}`
     }
   } else if (elementClass === "operator") {
     firstNumber = Number(firstNumber);
     operator = elementText;
     console.log("operator: " + operator);
+    calcResult.textContent = `${firstNumber} ${operator}`
   };
 
-  calcResult.textContent = `${firstNumber} ${operator} ${secondNumber}`
 
   // clear valriables 
   if (elementId === "clear") {
