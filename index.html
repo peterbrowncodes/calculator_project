@@ -10,41 +10,60 @@
 <body>
   <div id="container">
     <div id="display-bar">
-      RESULT
+      <p>RESULT</p>
     </div>
 
     <div id="calc-body">
-      <div id="left">
-        <table>
-          <tr>
-            <td class="number">9</td>
-            <td class="number">8</td>
-            <td class="number">7</td>
-          </tr>
-          <tr>
-            <td class="number">6</td>
-            <td class="number">5</td>
-            <td class="number">4</td>            
-          </tr>
-          <tr>
-            <td class="number">3</td>
-            <td class="number">2</td>
-            <td class="number">1</td>            
-          </tr>
-          <tr>
-            <td class="number" colspan="3">0</td>
-          </tr>                              
-        </table>
-      </div>
-      <div id="right">
-        <ul>
-          <li class="operator">+</li>
-          <li class="operator">-</li>
-          <li class="operator">*</li>
-          <li class="operator">/</li>
-          <li id="equals">=</li>
-        </ul>
-      </div>
+      <table>
+        <tr>
+          <td class="left">
+            <table id="calc-numbers">
+              <tr>
+                <td class="number">9</td>
+                <td class="number">8</td>
+                <td class="number">7</td>
+              </tr>
+              <tr>
+                <td class="number">6</td>
+                <td class="number">5</td>
+                <td class="number">4</td>            
+              </tr>
+              <tr>
+                <td class="number">3</td>
+                <td class="number">2</td>
+                <td class="number">1</td>            
+              </tr>
+              <tr>
+                <td class="number" colspan="3">0</td>
+              </tr>       
+            </table>
+          </td>
+          <td class="right">
+            <table id="calc-operators">
+              <tr>
+                <td class="operator">+</td>
+              </tr>
+              <tr>
+                <td class="operator">-</td>
+              </tr>
+              <tr>
+                <td class="operator">*</td>
+              </tr>
+              <tr>
+                <td class="operator">/</td>
+              </tr>
+            </table>
+          </td>
+        </tr>   
+        <tr>
+          <table>
+            <tr>
+              <td class="left">CLEAR</td>
+              <td class="right">=</td>
+            </tr>
+          </table>
+        </tr>                 
+      </table>
     </div>
   </div>
 </body>

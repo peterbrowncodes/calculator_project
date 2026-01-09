@@ -1,3 +1,9 @@
+const tds = document.querySelectorAll("td");
+const calcBody = document.getElementById("calc-body");
+const numberTable = document.getElementById("calc-numbers");
+const operatorTable = document.getElementById("calc-operators");
+const calcNumbers = document.querySelectorAll("number");
+const calcOperators = document.querySelectorAll("operator");
 let firstNumber;
 let secondNumber;
 let operator;
@@ -29,3 +35,14 @@ function operate(operator, num1, num2) {
     return division(num1, num2);
   };
 }
+
+function getClass(element) {
+  return element.className;
+}
+
+calcBody.addEventListener('click', function(event) {
+  elementText = event.target.textContent;
+  elementClass = event.target.className;
+  console.log(elementText);
+  console.log('Class: ' + elementClass);
+})
