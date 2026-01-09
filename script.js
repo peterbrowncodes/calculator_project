@@ -1,4 +1,3 @@
-const tds = document.querySelectorAll("td");
 const calcBody = document.getElementById("calc-body");
 const numberTable = document.getElementById("calc-numbers");
 const operatorTable = document.getElementById("calc-operators");
@@ -7,8 +6,11 @@ const calcClear = document.getElementById("clear");
 const calcEquals = document.getElementById("equals");
 const calcNumbers = document.querySelectorAll("number");
 const calcOperators = document.querySelectorAll("operator");
-let firstNumber = null;
+let selectedNum;
+let firstNumber;
+let firstNumberArray = [];
 let secondNumber;
+let secondNumberArray = [];
 let operator;
 let result;
 
@@ -29,7 +31,7 @@ function division(a, b) {
   return a / b;
 }
 
-function operate(num1, operator, num2) {
+function operate(num1, num2, operator) {
   if (operator === "+") {
     return addition(num1, num2);
   } else if (operator === "-") {
@@ -45,6 +47,14 @@ function getClass(element) {
   return element.className;
 }
 
+function concatNum(num, array) {
+  array.push(num);
+}
+
+function joinNum(array) {
+  return array.join('');
+}
+
 calcBody.addEventListener('click', function(event) {
 
   elementText = event.target.textContent;
@@ -58,34 +68,48 @@ calcBody.addEventListener('click', function(event) {
       // assign text content to 1st var
     // if not null 
       // assign text content to 2nd var
-    if (firstNumber === null) {
-      firstNumber = elementText;
+    if (operator === null) {
+      selectedNum = Number(elementText);
+      concatNum(selectedNum, firstNumberArray);
+      firstNumber = joinNum(firstNumberArray);
+      console.log("first number array: " + firstNumberArray);
       console.log("first number: " + firstNumber);
-    } else {
-      secondNumber = elementText;
+    } 
+    else {
+      selectedNum = Number(elementText);
+      concatNum(selectedNum, secondNumberArray);
+      secondNumber = joinNum(secondNumberArray);
+      console.log("second number array: " + secondNumberArray);
       console.log("second number: " + secondNumber);
     }
   } else if (elementClass === "operator") {
   // if operator
     // assign value to operator var
+    firstNumber = Number(firstNumber);
     operator = elementText;
     console.log("operator: " + operator);
   };
 
   // clear valriables 
   if (elementId === "clear") {
+    firstNumberArray = [];
     firstNumber = null;
+    secondNumberArray = [];
     secondNumber = null;
     operator = null;
+    calcResult.textContent = 0;
     console.log("cleared vars: " + firstNumber + secondNumber + operator);
   }
   // start operation
 
   // results output
-
+  if (elementId === "equals") {
+    result = operate(firstNumber, secondNumber, operator);
+    console.log(result);
+    calcResult.textContent = result;
+  }
   console.log(elementText);
   console.log('Class: ' + elementClass);
-  calcResult.textContent = elementText;
 })
 
 /* RESULT OUTPUT */
