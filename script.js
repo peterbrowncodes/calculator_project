@@ -7,9 +7,9 @@ const calcEquals = document.getElementById("equals");
 const calcNumbers = document.querySelectorAll("number");
 const calcOperators = document.querySelectorAll("operator");
 let selectedNum;
-let firstNumber;
+let firstNumber = 0;
 let firstNumberArray = [];
-let secondNumber;
+let secondNumber = 0;
 let secondNumberArray = [];
 let operator;
 let result;
@@ -32,15 +32,28 @@ function division(a, b) {
 }
 
 function operate(num1, num2, operator) {
-  if (operator === "+") {
-    return addition(num1, num2);
-  } else if (operator === "-") {
-    return subtraction(num1, num2);
-  } else if (operator === "*") {
-    return multiplication(num1, num2);
-  } else if (operator === "/") {
-    return division(num1, num2);
-  };
+  if (typeof(num1) === "number" && typeof(num2) === "number") {
+    if (operator === "+") {
+        return addition(num1, num2);
+      } else if (operator === "-") {
+        return subtraction(num1, num2);
+      } else if (operator === "*") {
+        return multiplication(num1, num2).toFixed(2);
+      } else if (operator === "/") {
+        if (num1 === 0 || num2 === 0) {
+          return 'STOP IT! NOW!';
+        } else {
+          let divisionResult;
+          quotient = division(num1, num2);
+          if (quotient % 1 !== 0) {
+            divisionResult = quotient.toFixed(2);
+          } else {
+            divisionResult = quotient.toFixed(0);
+          }
+          return divisionResult;
+        }
+      };
+  }
 }
 
 function getClass(element) {
@@ -66,7 +79,7 @@ calcBody.addEventListener('click', function(event) {
     if (operator === null) {
       selectedNum = Number(elementText);
       concatNum(selectedNum, firstNumberArray);
-      firstNumber = joinNum(firstNumberArray);
+      firstNumber = Number(joinNum(firstNumberArray));
       console.log("first number array: " + firstNumberArray);
       console.log("first number: " + firstNumber);
       calcResult.textContent = `${firstNumber}`;
@@ -74,25 +87,40 @@ calcBody.addEventListener('click', function(event) {
     else {
       selectedNum = Number(elementText);
       concatNum(selectedNum, secondNumberArray);
-      secondNumber = joinNum(secondNumberArray);
+      secondNumber = Number(joinNum(secondNumberArray));
       console.log("second number array: " + secondNumberArray);
       console.log("second number: " + secondNumber);
       calcResult.textContent = `${firstNumber} ${operator} ${secondNumber}`
     }
   } else if (elementClass === "operator") {
-    firstNumber = Number(firstNumber);
-    operator = elementText;
-    console.log("operator: " + operator);
-    calcResult.textContent = `${firstNumber} ${operator}`
+      if (operator === null) {
+        operator = elementText;
+        console.log("operator: " + operator);
+        calcResult.textContent = `${firstNumber} ${operator}`
+      } 
+      else {
+        result = operate(firstNumber, secondNumber, operator);
+        console.log(result);
+        calcResult.textContent = result;
+        firstNumber = result;
+        secondNumber = 0;
+        operator = null;
+        operator = elementText;
+        console.log("operator: " + operator);
+        calcResult.textContent = `${firstNumber} ${operator}`
+        secondNumberArray = [];
+        secondNumber = null;
+      }
+
   };
 
 
   // clear valriables 
   if (elementId === "clear") {
     firstNumberArray = [];
-    firstNumber = null;
+    firstNumber = 0;
     secondNumberArray = [];
-    secondNumber = null;
+    secondNumber = 0;
     operator = null;
     calcResult.textContent = 0;
     console.log("cleared vars: " + firstNumber + secondNumber + operator);
@@ -100,13 +128,19 @@ calcBody.addEventListener('click', function(event) {
 
   // results output
   if (elementId === "equals") {
+    if (operator === null) {
+    calcResult.textContent = firstNumber;
+    }
+    else if (secondNumber === null) {
+      secondNumber = 0;
+    }
     result = operate(firstNumber, secondNumber, operator);
-    console.log(result);
     calcResult.textContent = result;
+    firstNumber = 0;
+    secondNumber = 0;
+    operator = null;
+    console.log(result);
   }
   console.log(elementText);
   console.log('Class: ' + elementClass);
 })
-
-/* RESULT OUTPUT */
-
