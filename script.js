@@ -127,10 +127,12 @@ calcBody.addEventListener('click', function(event) {
       // operator is not null
       else {
         // runs operate before accepting new operator value
+        if (secondNumber != null) {
         result = operate(firstNumber, secondNumber, operator);
         calcResult.textContent = result;
         console.log(result);
-
+        }
+        
         operator = elementText;
         firstNumber = Number(result);
         console.log("operator: " + operator);
