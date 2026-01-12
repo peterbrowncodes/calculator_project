@@ -94,6 +94,8 @@ calcBody.addEventListener('click', function(event) {
   // if number
     // first number
     if (operator === null) {
+
+      // first number
       selectedNum = Number(elementText);
       concatNum(selectedNum, firstNumberArray);
       firstNumber = Number(joinNum(firstNumberArray));
@@ -114,25 +116,27 @@ calcBody.addEventListener('click', function(event) {
 
   // if operator
   } else if (elementClass === "operator") {
-      operator = elementText;
       
-      // is operator null
+      // is operator null - fresh calculation
       if (operator === null) {
+        operator = elementText;
         console.log("operator: " + operator);
         calcResult.textContent = `${firstNumber} ${operator}`
       } 
 
       // operator is not null
       else {
+        // runs operate before accepting new operator value
         result = operate(firstNumber, secondNumber, operator);
-        console.log(result);
         calcResult.textContent = result;
+        console.log(result);
+
+        operator = elementText;
         firstNumber = Number(result);
         console.log("operator: " + operator);
         calcResult.textContent = `${firstNumber} ${operator}`
         secondNumberArray = [];
         secondNumber = null;
-        operator = null;
       }
 
   };
